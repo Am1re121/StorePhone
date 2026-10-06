@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
-import Storename from './conponents/Storename/Storename.jsx'
-import Products from './conponents/Products/Products.jsx'
+import Header from "./conponents/Header/Header.jsx";
+
 
 function App() {
   const [phones, setPhones] = useState([
@@ -11,10 +11,11 @@ function App() {
     { id: 4, name: 'Phone 14', price: 500, hasInStock: true },
   ])
 
+  const [count, setCount] = useState(0)
+
   return (
     <>
-      <Storename />
-      <Products phones={phones} />
+           <Header/>
     </>
   )
 }
