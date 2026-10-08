@@ -5,6 +5,7 @@ import Header from "./components/Header/Header.jsx";
 import Categories from "./components/Categories/Categories.jsx";
 import Products from "./components/Products/Products.jsx";
 import PhoneDetails from "./components/PhoneDetails/PhoneDetails.jsx";
+import Favorite from "./components/Favorite/Favorite.jsx";
 
 import iphone11 from "./assets/iphone11.png";
 import iphone12 from "./assets/iphone12.png";
@@ -24,6 +25,8 @@ function App() {
     { id: 6, img:iphone16, name: 'Phone 16 Green 512GB', price: 700, hasInStock: true, description: "6.1-inch display, 512GB storage, great camera" },
   ])
 
+  const [favorites, setFavorites] = useState([])
+
   const [count, setCount] = useState(0)
 
   return (
@@ -31,8 +34,9 @@ function App() {
            <Header/>
 
         <Routes>
-        <Route path="/" element={<><Categories/><Products phones={phones}/></>} />
-        <Route path="/phone/:id" element={<PhoneDetails phones={phones}/>} />
+        <Route path="/" element={<><Categories/><Products phones={phones} favorites={favorites} setFavorites={setFavorites}/></>} />
+        <Route path="/phone/:id" element={<PhoneDetails phones={phones} favorites={favorites} setFavorites={setFavorites}/>} />
+        <Route path="/favorite" element={<Favorite favorites={favorites} setFavorites={setFavorites}/>} />
         </Routes>
         
     </BrowserRouter>
