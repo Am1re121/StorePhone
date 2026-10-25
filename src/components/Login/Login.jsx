@@ -32,7 +32,7 @@ function Login() {
             }
 
             setMessage("Вход выполнен успешно!");
-
+            localStorage.setItem("userId", String(data.userId));
             navigate("/");
         } catch (error) {
             setMessage("Не удалось подключиться к серверу");

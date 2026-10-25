@@ -28,6 +28,7 @@ function Register() {
             const data = await response.json();
             setMessage(data.message);
             if (response.ok) {
+                localStorage.setItem("userId", String(data.userId));
                 navigate("/");
             }
         } catch (error) {

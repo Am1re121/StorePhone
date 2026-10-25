@@ -3,9 +3,66 @@ import korzina from "../../assets/korzina.png";
 
 function Favorite(props) {
 
-    function setremovefav(phone) {
-            props.setFavorites(props.favorites.filter((item) => item.id !== phone.id))
+    async function favorites(phones) {
+        try {
+            const response = await fetch("http://localhost:3000/api/favorites", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ userId: localStorage.getItem("userId"), productId: phone.id })
+                })
+                }
+        catch (error) {
+            console.error("Ошибка при отправке избранных товаров:", error);
         }
+    }
+
+    
+
+async function setremovefav(phone) {
+    console.log("1. Нажали на корзину:", phone);
+
+    const userId = localStorage.getItem("userId");
+    console.log("2. ID пользователя:", userId);
+    console.log("3. ID товара:", phone.id);
+
+    if (!userId) {
+        alert("Сначала войдите в аккаунт");
+        return;
+    }
+
+    try {
+        console.log("Отправляем DELETE-запрос");
+
+    const response = await fetch(
+        `http://localhost:3000/api/favorites/${userId}/${phone.id}`,
+        {
+            method: "DELETE"
+        }
+    );
+
+    console.log("Получили ответ сервера:", response.status);
+
+        const data = await response.json();
+        console.log("5. Ответ сервера:", data);
+
+        if (!response.ok) {
+            throw new Error(data.message || "Ошибка удаления");
+        }
+
+        props.setFavorites((prev) =>
+            prev.filter((item) => item.id !== phone.id)
+        );
+
+        console.log("6. Товар удалён!");
+    } catch (error) {
+        console.error("Ошибка удаления:", error);
+        alert("Ошибка удаления: " + error.message);
+    }
+}
+
+
 
         const total = props.favorites.reduce((acc, phone) => acc + phone.price, 0);
     return (
