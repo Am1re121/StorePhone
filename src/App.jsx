@@ -8,6 +8,7 @@ import PhoneDetails from "./components/PhoneDetails/PhoneDetails.jsx";
 import Favorite from "./components/Favorite/Favorite.jsx";
 import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
+import Korzina from './components/Korzina/Korzina.jsx';
   
 
 function AppContent({ phones, favorites, setFavorites }) {
@@ -23,12 +24,19 @@ function AppContent({ phones, favorites, setFavorites }) {
                 <Route path="/" element={<><Categories /><Products phones={phones} favorites={favorites} setFavorites={setFavorites} /></>} />
                 <Route path="/phone/:id" element={<PhoneDetails phones={phones} favorites={favorites} setFavorites={setFavorites} />} />
                 <Route path="/favorite" element={<Favorite favorites={favorites} setFavorites={setFavorites} />} />
+                <Route path="/korzina" element ={<Korzina favorites={favorites} setFavorites={setFavorites} />} />
             </Routes>
         </>
     );
 }
 
 function App() {
+
+  const [phones, setPhones] = useState([])
+
+  const [favorites, setFavorites] = useState([])
+
+  const [count, setCount] = useState(0)
 
 useEffect(() => {
     fetch("http://localhost:3000/api/products")
@@ -53,6 +61,8 @@ useEffect(() => {
         if(!res.ok) {
             throw new Error("Не удалось сохранить избранное")
         }
+
+        return res.json()
     })
     .then((data) => {
         setFavorites(data);
@@ -62,13 +72,9 @@ useEffect(() => {
 console.error("Ошибка");
 
     })
-})
+}, [])
 
-  const [phones, setPhones] = useState([])
 
-  const [favorites, setFavorites] = useState([])
-
-  const [count, setCount] = useState(0)
 
   return (
     

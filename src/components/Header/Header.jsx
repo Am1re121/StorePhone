@@ -13,7 +13,7 @@ function Header() {
             <img src={search} alt="Search" style={{height:"20px", width:"20px", position:"absolute", left:"415px", top:"45px"}} />
             <button style={{cursor:"pointer", position:"absolute", left:"1450px", top:"30px", height:"50px", width:"50px", borderRadius:"30px", border:"none", fontSize:"15px", fontFamily:"sans-serif", backgroundColor:"#F5F6F8"}}><img src={user} alt="User" style={{height:"30px", width:"30px", position:"absolute", left:"10px", top:"10px"}} /></button>
             <Link to="/favorite" style={{textDecoration:"none"}}><button style={{cursor:"pointer", position:"absolute", left:"1390px", top:"30px", height:"50px", width:"50px", borderRadius:"30px", border:"none", fontSize:"15px", fontFamily:"sans-serif", backgroundColor:"#F5F6F8"}}><img src={heart} alt="User" style={{height:"30px", width:"30px", position:"absolute", left:"10px", top:"10px"}} /></button></Link>
-            <button style={{cursor:"pointer", position:"absolute", left:"1330px", top:"30px", height:"50px", width:"50px", borderRadius:"30px", border:"none", fontSize:"15px", fontFamily:"sans-serif", backgroundColor:"#F5F6F8"}}><img src={basket} alt="Cart" style={{height:"30px", width:"30px", position:"absolute", left:"10px", top:"10px"}} /></button>
+            <Link to="/korzina" style={{textDecoration:"none"}}><button style={{cursor:"pointer", position:"absolute", left:"1330px", top:"30px", height:"50px", width:"50px", borderRadius:"30px", border:"none", fontSize:"15px", fontFamily:"sans-serif", backgroundColor:"#F5F6F8"}}><img src={basket} alt="Cart" style={{height:"30px", width:"30px", position:"absolute", left:"10px", top:"10px"}} /></button></Link>
         </div>
         </>
     )}
